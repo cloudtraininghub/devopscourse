@@ -8,7 +8,7 @@ def is_prime(n):
     return True
 
 # Test the function
-number = int(input("Enter a number: "))
+number = 10
 if is_prime(number):
     print(f"{number} is a prime number.")
 else:
