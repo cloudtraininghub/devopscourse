@@ -27,4 +27,4 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
     - name: Run application
-      run: dotnet run --project YourProjectName/YourProjectName.csproj
+      run: dotnet run --project addition/addition.csproj
