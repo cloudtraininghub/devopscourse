@@ -1,23 +1,53 @@
 pipeline {
     agent any
+
     stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository
+                git 'https://github.com/cloudtraininghub/devopscourse.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Install Python dependencies
+                sh 'pip install --upgrade pip'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building...'
-                // Add your build steps here
+                // Run your build commands
+                sh 'python main.py build'
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Testing...'
-                // Add your test steps here
+                // Run your test commands
+                sh 'pytest'
             }
         }
+
         stage('Deploy') {
             steps {
+                // Add your deployment steps here
                 echo 'Deploying...'
-                // Add your deploy steps here
             }
+        }
+    }
+
+    post {
+        always {
+            // Clean up workspace
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
