@@ -10,9 +10,15 @@ pipeline {
             }
         }
 
+        stage('Upgrade pip') {
+            steps {
+                sh '. venv/bin/activate && python3 -m pip install --upgrade pip'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                sh '. venv/bin/activate && python3 -m pip install --upgrade'
+                sh '. venv/bin/activate && python3 -m pip install -r requirements.txt'
             }
         }
 
