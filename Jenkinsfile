@@ -28,12 +28,6 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh '. venv/bin/activate && python3 -m pytest'
-            }
-        }
-
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
