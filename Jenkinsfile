@@ -12,7 +12,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '. venv/bin/activate && python3 -m pip install'
+                sh '. venv/bin/activate && python3 -m pip install --upgrade'
             }
         }
 
