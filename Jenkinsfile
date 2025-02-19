@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Clone the repository
-                git 'https://github.com/cloudtraininghub/devopscourse.git'
-            }
-        }
 
         stage('Install Dependencies') {
             steps {
