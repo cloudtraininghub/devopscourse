@@ -5,6 +5,7 @@ def fibonacci(n):
         fib_series.append(fib_series[-1] + fib_series[-2])
     return fib_series[:n]
 
+
 # Input the number of terms
 num_terms = int(input("Enter the number of terms: "))
 fib_series = fibonacci(num_terms)
