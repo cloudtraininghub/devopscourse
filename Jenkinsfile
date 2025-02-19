@@ -3,30 +3,33 @@ pipeline {
 
     stages {
 
+        stage('Setup Virtual Environment') {
+            steps {
+                sh 'python -m venv venv'
+                sh '. venv/bin/activate'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                // Install Python dependencies
-                sh 'pip install --upgrade pip'
+                sh '. venv/bin/activate && python -m pip install -r requirements.txt'
             }
         }
 
         stage('Build') {
             steps {
-                // Run your build commands
-                sh 'python main.py build'
+                sh '. venv/bin/activate && python main.py'
             }
         }
 
         stage('Test') {
             steps {
-                // Run your test commands
-                sh 'pytest'
+                sh '. venv/bin/activate && python -m pytest'
             }
         }
 
         stage('Deploy') {
             steps {
-                // Add your deployment steps here
                 echo 'Deploying...'
             }
         }
@@ -34,7 +37,6 @@ pipeline {
 
     post {
         always {
-            // Clean up workspace
             cleanWs()
         }
         success {
