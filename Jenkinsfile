@@ -5,26 +5,26 @@ pipeline {
 
         stage('Setup Virtual Environment') {
             steps {
-                sh 'python -m venv venv'
+                sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh '. venv/bin/activate && python -m pip install -r requirements.txt'
+                sh '. venv/bin/activate && python3 -m pip install -r requirements.txt'
             }
         }
 
         stage('Build') {
             steps {
-                sh '. venv/bin/activate && python main.py'
+                sh '. venv/bin/activate && python3 main.py build'
             }
         }
 
         stage('Test') {
             steps {
-                sh '. venv/bin/activate && python -m pytest'
+                sh '. venv/bin/activate && python3 -m pytest'
             }
         }
 
