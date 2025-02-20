@@ -13,9 +13,7 @@ jobs:
       - python/install-packages
       - run:
           name: Run tests
-          command: pytest --junitxml=junit.xml || ((($? == 5)) && echo 'Did not find any tests to run.')
-      - store_test_results:
-          path: junit.xml
+          command: python3 -m pip install --upgrade pip
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
@@ -24,13 +22,7 @@ jobs:
       # Replace this with steps to deploy to users
       - run:
           name: deploy
-          command: '#e.g. ./deploy.sh'
-      - run:
-          name: found github actions config
-          command: ':'
-      - run:
-          name: found jenkins config
-          command: ':'
+          command: echo 'doing deployment'
 workflows:
   build-and-test:
     jobs:
